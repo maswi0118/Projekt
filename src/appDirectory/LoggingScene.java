@@ -15,6 +15,7 @@ public class LoggingScene {
         siema.setText("siema, press me");
         siema.setOnAction(e -> System.out.println("siema"));
 
+
         VBox loggingLayout = new VBox();
         loggingLayout.setAlignment(Pos.CENTER);
         loggingLayout.getChildren().add(siema);
