@@ -9,14 +9,16 @@ public class LabelBuilder extends Label {
     LabelBuilder(){
         label = new Label();
     }
+
     public Label makePretty(String font,
                             double size,
                             double width,
                             double height) {
 
+
         label.setFont(new Font(font, size));
         label.setMaxHeight(height);
-        label.setMaxHeight(width);
+        label.setMaxWidth(width);
         label.setTextFill(Color.LIGHTGREEN);
         return label;
     }
