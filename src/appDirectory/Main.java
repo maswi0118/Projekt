@@ -27,6 +27,7 @@ public class Main extends Application {
         mainWindow.show();
         //może sie przydac
         //System.out.println(Font.getFontNames());
+        loadWeatherData.printWeather();
     }
 
 
