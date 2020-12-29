@@ -15,7 +15,6 @@ public class LabelBuilder extends Label {
                             double width,
                             double height) {
 
-
         label.setFont(new Font(font, size));
         label.setMaxHeight(height);
         label.setMaxWidth(width);
