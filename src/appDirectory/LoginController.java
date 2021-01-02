@@ -1,7 +1,6 @@
 package appDirectory;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,6 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -32,6 +32,8 @@ public class LoginController implements Initializable {
     private Button signInButton;
     @FXML
     private Label errorLabel;
+    @FXML
+    private StackPane stackPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -41,7 +43,11 @@ public class LoginController implements Initializable {
             i.setOnKeyPressed(e -> {
                 if(e.getCode() == KeyCode.ENTER){
                     if (validUser()) {
-                        loadHome();
+                        try {
+                            loadHome();
+                        } catch (IOException exception) {
+                            exception.printStackTrace();
+                        }
                     } else {
                         errorLabel.setVisible(true);
                         dance();
@@ -58,16 +64,29 @@ public class LoginController implements Initializable {
     }
 
     // loads home page upon successful login
-    private void loadHome(){
+    private void loadHome() throws IOException {
         try{
             Stage stage = (Stage) mainPane.getScene().getWindow();
-            Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
-            Scene scene = new Scene(parent, 700,700);
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-        }catch (IOException ex){
-            System.out.println("kuzwa scena sie nie laduje");
+            Parent homescene = FXMLLoader.load(getClass().getResource("sample.fxml"));
+
+            homescene.translateYProperty().set(mainPane.getScene().getHeight());
+
+
+            stackPane.getChildren().add(homescene);
+            //load new scene from btm to top
+
+            Timeline timeline = new Timeline();
+            KeyValue kv = new KeyValue(homescene.translateYProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.millis(400), kv);
+            timeline.getKeyFrames().add(kf);
+
+            //After completing animation, remove first scene
+            timeline.setOnFinished(t -> {
+                stackPane.getChildren().remove(mainPane);
+            });
+            timeline.play();
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
     }
 
