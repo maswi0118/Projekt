@@ -7,7 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class loadWeatherData {
+public class weatherData {
 
     private static String currentData;
     private static String [] currentDataTab;
@@ -36,7 +36,7 @@ public class loadWeatherData {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(result);
+        //System.out.println(result);
         currentData = result.toString();
         currentDataTab = currentData.split(",");
     }
