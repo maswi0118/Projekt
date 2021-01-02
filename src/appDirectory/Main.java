@@ -20,9 +20,8 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
-        //może sie przydac
-        //System.out.println(Font.getFontNames());
-        loadWeatherData.printWeather();
+
+        //loadWeatherData.printWeather();
     }
 
     public static void main(String[] args) {
