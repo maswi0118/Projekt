@@ -60,9 +60,9 @@ public class LoginController implements Initializable {
     // loads home page upon successful login
     private void loadHome(){
         try{
+            Stage stage = (Stage) mainPane.getScene().getWindow();
             Parent parent = FXMLLoader.load(getClass().getResource("sample.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(parent, 1200,700);
+            Scene scene = new Scene(parent, 700,700);
             stage.setScene(scene);
             stage.setResizable(false);
             stage.show();
