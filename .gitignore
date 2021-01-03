@@ -1,3 +1,4 @@
 #sprawdzmy czy zadziala
 .idea/
-*.iml
+Projekt/out/*
+Projekt/*.iml
