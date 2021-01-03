@@ -1,6 +1,7 @@
 package appDirectory;
 
 import javafx.animation.*;
+import javafx.beans.value.WritableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,14 +15,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class LoginController implements Initializable {
     @FXML
@@ -59,7 +59,7 @@ public class LoginController implements Initializable {
     private void loadHome() throws IOException {
         try{
             Stage stage = (Stage) mainPane.getScene().getWindow();
-            Parent homescene = FXMLLoader.load(getClass().getResource("sampleHome.fxml"));
+            Parent homescene = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
 
             homescene.translateYProperty().set(mainPane.getScene().getHeight());
 
@@ -71,11 +71,14 @@ public class LoginController implements Initializable {
             KeyFrame kf = new KeyFrame(Duration.millis(400), kv);
             timeline.getKeyFrames().add(kf);
 
+
             //After completing animation, remove first scene
             timeline.setOnFinished(t -> {
+                rescaleStage(stage);
                 stackPane.getChildren().remove(mainPane);
             });
             timeline.play();
+
         } catch (IOException exception) {
             exception.printStackTrace();
         }
@@ -91,6 +94,44 @@ public class LoginController implements Initializable {
         errorLabelAnim.setCycleCount(2);
         errorLabelAnim.setAutoReverse(true);
         errorLabelAnim.play();
+    }
+
+    private void rescaleStage(Stage stage){
+        //set all new scene children (stackpane) invisible, then invoke in an animation
+
+        //overridden methods so as to alter stage dimensions; result corny as fuck
+        //touch up if time allows (?)
+        WritableValue<Double> writableHeight = new WritableValue<Double>() {
+            @Override
+            public Double getValue() {
+                return stage.getHeight();
+            }
+
+            @Override
+            public void setValue(Double value) {
+                stage.setHeight(value);
+            }
+        };
+        WritableValue<Double> writableWidth = new WritableValue<Double>() {
+            @Override
+            public Double getValue() {
+                return stage.getWidth();
+            }
+
+            @Override
+            public void setValue(Double value) {
+                stage.setWidth(value);
+            }
+        };
+
+
+        Timeline timeline = new Timeline();
+        timeline.setCycleCount(1);
+        timeline.getKeyFrames().addAll(
+                new KeyFrame(Duration.ZERO,new KeyValue(writableHeight, writableHeight.getValue()), new KeyValue(writableWidth, writableWidth.getValue())),
+                new KeyFrame(Duration.millis(550), new KeyValue(writableHeight, (double)600), new KeyValue(writableWidth, (double)400))
+        );
+        timeline.play();
     }
 
     //generates arrow key array; literally useless yet will not be discarded of until code cleanup on 19th
