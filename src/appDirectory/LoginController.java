@@ -129,7 +129,7 @@ public class LoginController implements Initializable {
         timeline.setCycleCount(1);
         timeline.getKeyFrames().addAll(
                 new KeyFrame(Duration.ZERO,new KeyValue(writableHeight, writableHeight.getValue()), new KeyValue(writableWidth, writableWidth.getValue())),
-                new KeyFrame(Duration.millis(550), new KeyValue(writableHeight, (double)600), new KeyValue(writableWidth, (double)400))
+                new KeyFrame(Duration.millis(550), new KeyValue(writableHeight, stage.getScene().getHeight()), new KeyValue(writableWidth, stage.getScene().getWidth()))
         );
         timeline.play();
     }
@@ -155,6 +155,8 @@ public class LoginController implements Initializable {
             } else {
                 errorLabel.setVisible(true);
                 dance();
+                passwordField.clear();
+                loginField.clear();
             }
         }
         //UP or DOWN -> text field switching
