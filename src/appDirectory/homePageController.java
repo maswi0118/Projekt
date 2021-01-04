@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class homePageController implements Initializable {
+public class homePageController extends commonAnim implements Initializable {
     @FXML
     private ImageView settingsIcon;
     @FXML
