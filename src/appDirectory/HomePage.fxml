@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appDirectory.homePageController">
+<StackPane fx:id="stackPane" prefHeight="255.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appDirectory.homePageController">
    <children>
-      <AnchorPane fx:id="mainPane" style="-fx-background-color: azure;">
+      <AnchorPane fx:id="mainPane" prefHeight="255.0" prefWidth="575.0" style="-fx-background-color: azure;">
          <children>
             <ImageView fx:id="settingsIcon" fitHeight="60.0" fitWidth="60.0" layoutX="512.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>

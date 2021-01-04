@@ -45,7 +45,7 @@ public class homePageController implements Initializable {
     }
 
 
-    public void invokeNode(Node node){
+    public static void invokeNode(Node node){
         ParallelTransition parallelTransition = new ParallelTransition();
 
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(700), node);

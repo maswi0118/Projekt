@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -15,6 +16,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -23,7 +25,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-public class LoginController implements Initializable {
+import static appDirectory.homePageController.invokeNode;
+
+public class LoginController extends commonAnim implements Initializable {
     @FXML
     private TextField loginField;
     @FXML
@@ -58,27 +62,47 @@ public class LoginController implements Initializable {
     // loads home page upon successful login
     private void loadHome() throws IOException {
         try{
-            Stage stage = (Stage) mainPane.getScene().getWindow();
-            Parent homescene = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
-
-            homescene.translateYProperty().set(mainPane.getScene().getHeight());
-
-            stackPane.getChildren().add(homescene);
-            //load new scene from btm to top
+            Parent tempScene = FXMLLoader.load(getClass().getResource("loginTransitionScene.fxml"));
+            tempScene.translateYProperty().set(stackPane.getScene().getHeight());
+            stackPane.getChildren().add(tempScene);
+            //load transition scene from btm to top
 
             Timeline timeline = new Timeline();
-            KeyValue kv = new KeyValue(homescene.translateYProperty(), 0, Interpolator.EASE_IN);
-            KeyFrame kf = new KeyFrame(Duration.millis(400), kv);
+            KeyValue kv = new KeyValue(tempScene.translateYProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.millis(1500), kv);
             timeline.getKeyFrames().add(kf);
 
 
             //After completing animation, remove first scene
             timeline.setOnFinished(t -> {
-                rescaleStage(stage);
                 stackPane.getChildren().remove(mainPane);
+
+                try {
+                    Parent sampleHome = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
+                    Stage oldStage = (Stage) stackPane.getScene().getWindow();
+//                    oldStage.close();
+//                    Stage newStage = new Stage();
+//                    newStage.setResizable(false);
+//                    Scene scene = new Scene(sampleHome, 575, 255);
+//                    newStage.setScene(scene);
+//                    newStage.show();
+                    rescaleStage(oldStage);
+
+                    stackPane.getChildren().add(sampleHome);
+                    //load transition scene from btm to top
+
+                    Timeline timeline2 = new Timeline();
+                    KeyValue kv2 = new KeyValue(sampleHome.translateXProperty(), 0, Interpolator.EASE_IN);
+                    KeyFrame kf2 = new KeyFrame(Duration.millis(1000), kv2);
+                    timeline2.getKeyFrames().add(kf2);
+
+                    timeline2.play();
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             });
             timeline.play();
-
         } catch (IOException exception) {
             exception.printStackTrace();
         }
@@ -123,15 +147,17 @@ public class LoginController implements Initializable {
                 stage.setWidth(value);
             }
         };
-
+        stage.setResizable(true);
 
         Timeline timeline = new Timeline();
         timeline.setCycleCount(1);
         timeline.getKeyFrames().addAll(
                 new KeyFrame(Duration.ZERO,new KeyValue(writableHeight, writableHeight.getValue()), new KeyValue(writableWidth, writableWidth.getValue())),
-                new KeyFrame(Duration.millis(550), new KeyValue(writableHeight, stage.getScene().getHeight()), new KeyValue(writableWidth, stage.getScene().getWidth()))
+                new KeyFrame(Duration.millis(1100), new KeyValue(writableHeight, (double)255), new KeyValue(writableWidth, (double)575))
         );
+
         timeline.play();
+        stage.setResizable(false);
     }
 
     //generates arrow key array; literally useless yet will not be discarded of until code cleanup on 19th
@@ -151,6 +177,7 @@ public class LoginController implements Initializable {
                     loadHome();
                 } catch (IOException exception) {
                     exception.printStackTrace();
+
                 }
             } else {
                 errorLabel.setVisible(true);
