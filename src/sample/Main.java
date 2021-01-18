@@ -18,9 +18,9 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        airQualityData a = new airQualityData("chicago");
-        System.out.println(a.getData().get("co"));
+        airQualityData a = new airQualityData("Cracow");
         System.out.println(a.getData().get("aqi"));
+        System.out.println(a.getData().get("co"));
         System.out.println(a.getData().get("no2"));
         System.out.println(a.getData().get("o3"));
         System.out.println(a.getData().get("pm10"));

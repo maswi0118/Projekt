@@ -20,7 +20,7 @@ public class airQualityData {
 
 
         try {
-            url = new URL("https://api.waqi.info/feed/" + location + "/?token=8ff8681a5fa4a3e59c14b179ca224987ecd348a3");
+            url = new URL("https://api.weatherbit.io/v2.0/current/airquality?city=" + location + "&key=1e313668c6ce45c09f3658f8d7747d23");
             URLConnection connection = url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String line;
@@ -34,19 +34,14 @@ public class airQualityData {
             String[] currentDataTab;
             currentData = result.toString().replaceAll("}", "");
             currentDataTab = currentData.split(",");
-            if(currentData != "{\"status\":\"error\",\"data\":\"Unknown station\"}") {
-                data.put("location", location);
-                data.put("aqi", currentDataTab[1].split(":")[2]);
-//                data.put("co", currentDataTab[18].split(":")[3]);
-//                data.put("no2", currentDataTab[21].split(":")[2]);
-//                data.put("o3", currentDataTab[22].split(":")[2]);
-//                data.put("pm10", currentDataTab[24].split(":")[2]);
-//                data.put("pm25", currentDataTab[25].split(":")[2]);
-//                data.put("so2", currentDataTab[26].split(":")[2]);
-            }
-            else{
-                System.out.println("zle miasto mordo");
-            }
+            data.put("location", location);
+            data.put("aqi", currentDataTab[1].split(":")[1]);
+            data.put("co", currentDataTab[3].split(":")[1] + " ug/m3");
+            data.put("no2", currentDataTab[9].split(":")[1] + " ug/m3");
+            data.put("o3", currentDataTab[4].split(":")[1] + " ug/m3");
+            data.put("pm10", currentDataTab[2].split(":")[1] + " ug/m3");
+            data.put("pm25", currentDataTab[10].split(":")[1] + " ug/m3");
+            data.put("so2", currentDataTab[6].split(":")[1] + " ug/m3");
 
         }
         catch (MalformedURLException e) {
