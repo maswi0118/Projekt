@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane fx:id="homeStackPane" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.homeController">
+   <children>
+      <AnchorPane fx:id="homeMainPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url(/sample/images/wawanakwa.png);">
+         <children>
+            <AnchorPane fx:id="buttonPane" layoutX="100.0" layoutY="200.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.topAnchor="200.0">
+               <children>
+                  <ImageView fx:id="weatherControl" fitHeight="60.0" fitWidth="60.0" layoutX="14.0" layoutY="40.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images/cat.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="foodControl" fitHeight="60.0" fitWidth="60.0" layoutX="70.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/cat.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="airControl" fitHeight="60.0" fitWidth="60.0" layoutX="130.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/cat.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </AnchorPane>
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></AnchorPane>
+   </children>
+</StackPane>

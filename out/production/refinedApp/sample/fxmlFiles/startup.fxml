@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="parentContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.startController">
+   <children>
+      <AnchorPane fx:id="mainPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: CORAL;">
+         <children>
+            <Button fx:id="enterButton" layoutX="150.0" layoutY="409.0" mnemonicParsing="false" opacity="0.77" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: CORAL;" text="ENTER">
+               <font>
+                  <Font name="Apple Chancery" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" color="#615b5b" height="14.97" offsetX="1.0" offsetY="2.0" radius="7.737500000000001" spread="0.18" width="17.98" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fx:id="initImage" fitHeight="120.0" fitWidth="164.0" layoutX="140.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/cat.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="initText" editable="false" layoutX="122.0" layoutY="342.0" style="-fx-background-color: TRANSPARENT;" text="WELCOME TO {APP}  ">
+               <font>
+                  <Font name="Apple Chancery" size="13.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

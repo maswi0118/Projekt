@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane fx:id="weatherStackPane" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.weatherController">
+   <children>
+      <AnchorPane fx:id="weatherMainPane" prefHeight="364.0" prefWidth="201.0" style="-fx-background-color: aquamarine;">
+         <children>
+            <AnchorPane fx:id="dataAnchor" layoutX="14.0" layoutY="14.0" prefHeight="587.0" prefWidth="373.0">
+               <children>
+                  <VBox fx:id="textVbox" alignment="CENTER" layoutX="181.0" prefHeight="542.0" prefWidth="192.0" spacing="40.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="181.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TextField fx:id="localizationField">
+                           <font>
+                              <Font name="Apple Chancery" size="14.0" />
+                           </font></TextField>
+                        <TextField fx:id="feelslikeField" editable="false" />
+                        <TextField fx:id="tempField" />
+                        <TextField fx:id="pressureField" />
+                        <TextField fx:id="humidityField" />
+                        <TextField fx:id="windField" />
+                        <TextField fx:id="cloudsField" opacity="0.0" />
+                        <TextField fx:id="iconField" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="iconVbox" alignment="CENTER" prefHeight="542.0" prefWidth="166.0" spacing="5.0">
+                     <children>
+                        <ImageView fx:id="locationIcon" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="tempIcon" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="feelsIcon" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="pressIcon" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+                        <AnchorPane fx:id="weatherLoadPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: aquamarine;">
+                           <children>
+                              <JFXProgressBar fx:id="weatherProgress" disable="true" layoutX="100.0" layoutY="332.0" visible="false" />
+                              <JFXButton fx:id="returnLoad" alignment="CENTER" buttonType="RAISED" disable="true" layoutX="148.0" layoutY="352.0" ripplerFill="WHITE" text="return to home" visible="false">
+                                 <font>
+                                    <Font name="Apple Chancery" size="13.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                        <ImageView fx:id="humidIcon" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="windIcon" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="cloudsIcon" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="iconIcon" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <JFXButton fx:id="returnButton" alignment="CENTER" buttonType="RAISED" layoutX="148.0" layoutY="542.0" ripplerFill="WHITE" text="return to home">
+                     <font>
+                        <Font name="Apple Chancery" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+   </children>
+</StackPane>

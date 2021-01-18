@@ -1,4 +1,4 @@
-package appDirectory;
+package sample.methods;
 
 import java.io.IOException;
 import java.net.*;
@@ -33,7 +33,7 @@ public class foodData {
                 data.put("sugar", currentDataTab[0].split(":")[2]);
                 data.put("fiber", currentDataTab[1].split(":")[1]);
                 data.put("weight", currentDataTab[2].split(":")[1]);
-                data.put("sodium", currentDataTab[3].split(":")[1]);
+                data.put("sodium", currentDataTab[3].split(":")[1] + "mg");
                 data.put("name", currentDataTab[4].split(":")[1]);
                 data.put("potassium", currentDataTab[5].split(":")[1]);
                 data.put("fatSaturated", currentDataTab[6].split(":")[1]);

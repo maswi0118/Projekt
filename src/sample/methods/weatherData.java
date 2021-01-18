@@ -1,4 +1,4 @@
-package appDirectory;
+package sample.methods;
 
 import java.io.BufferedReader;
 import java.io.IOException;

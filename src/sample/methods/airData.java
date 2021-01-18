@@ -9,11 +9,11 @@ import java.net.URLConnection;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 
-public class airQualityData {
+public class airData {
 
     private HashMap<String, String> data = new HashMap<String, String>();
 
-    public airQualityData(String location) {
+    public airData(String location) {
 
         StringBuilder result = new StringBuilder();
         URL url;
@@ -37,12 +37,6 @@ public class airQualityData {
             if(currentData != "{\"status\":\"error\",\"data\":\"Unknown station\"}") {
                 data.put("location", location);
                 data.put("aqi", currentDataTab[1].split(":")[2]);
-//                data.put("co", currentDataTab[18].split(":")[3]);
-//                data.put("no2", currentDataTab[21].split(":")[2]);
-//                data.put("o3", currentDataTab[22].split(":")[2]);
-//                data.put("pm10", currentDataTab[24].split(":")[2]);
-//                data.put("pm25", currentDataTab[25].split(":")[2]);
-//                data.put("so2", currentDataTab[26].split(":")[2]);
             }
             else{
                 System.out.println("zle miasto mordo");
@@ -56,7 +50,7 @@ public class airQualityData {
             System.out.println("brak neta albo api nie odpowiada");
         }
         catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("index out of bound");
+            System.out.println("zla lokalizacja byniu");
         }
         catch (IOException e) {
             e.printStackTrace();
